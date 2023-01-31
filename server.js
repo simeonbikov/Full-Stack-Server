@@ -41,9 +41,9 @@ app.post("/videos", (req, res) => {
   const isValidYoutubeUrl = (link) => {
     return link.trim().match(REGEXP) !== null;
   };
-
-  const addedVideoTitle = req.body.title.trim();
-  const addedVideoUrl = req.body.url.trim();
+  const addedVideo = JSON.parse(req.body.newVideo);
+  const addedVideoTitle = (addedVideo.url).trim();
+  const addedVideoUrl = (addedVideo.utl).trim();
   const todayDate = new Date().toISOString().slice(0, 10);
   const addedVideoRating = 0;
 
