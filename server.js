@@ -22,7 +22,7 @@ const pool = new Pool({
 pool.connect();
 
 // GET "/"
-app.get("/", (req, res) => {
+app.get("/videos", (req, res) => {
   const query = "SELECT * FROM videos ORDER BY rating DESC";
   pool
     .query(query)
