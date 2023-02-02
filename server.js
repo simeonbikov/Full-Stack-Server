@@ -42,7 +42,6 @@ app.get("/videos", (req, res) => {
 
 // POST "/"
 app.post("/videos", (req, res) => {
-  // const addedVideo = JSON.parse(req.body.newVideo);
   const addedVideoTitle = req.body.title.trim();
   const addedVideoUrl = req.body.url.trim();
   const todayDate = new Date().toISOString().slice(0, 10);
@@ -98,6 +97,10 @@ app.delete("/videos/:id", (req, res) => {
   const deletedVideoId = parseInt(req.params.id);
   if (!deletedVideoId) {
     res.sendStatus(404);
+    return;
+  }
+  if (deletedVideoId < 10) {
+    res.sendStatus(403);
     return;
   }
   const query = "DELETE FROM videos WHERE id=$1";
