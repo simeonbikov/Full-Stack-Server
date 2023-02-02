@@ -115,8 +115,12 @@ app.put("/videos/:id", (req, res) => {
   const requestedVideoId = parseInt(req.params.id);
   const changedVideoRating = parseInt(req.body.rating);
   console.log(requestedVideoId, changedVideoRating);
-  if (!requestedVideoId || !changedVideoRating) {
+  if (!requestedVideoId) {
     res.sendStatus(404);
+    return;
+  }
+  if (changedVideoRating < 0) {
+    res.sendStatus(400);
     return;
   }
   const query = "UPDATE videos SET rating=$1 WHERE id=$2";
