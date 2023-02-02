@@ -93,17 +93,6 @@ app.get("/videos/:id", (req, res) => {
     });
 });
 
-app.get("/videos/?order=desc", (req, res) => {
-  const query = "SELECT * FROM videos ORDER BY rating DESC";
-  pool
-    .query(query)
-    .then((videos) => res.json(videos.rows))
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json(error);
-    });
-});
-
 // DELETE "/{id}"
 app.delete("/videos/:id", (req, res) => {
   const deletedVideoId = parseInt(req.params.id);
