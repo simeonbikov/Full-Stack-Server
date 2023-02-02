@@ -25,6 +25,9 @@ pool.connect();
 app.get("/videos", (req, res) => {
   const { order } = req.query;
   let query = "SELECT * FROM videos";
+  if (!order) {
+    query += " ORDER BY id ASC";
+  }
   if (order === "asc") {
     query += " ORDER BY rating ASC";
   }
